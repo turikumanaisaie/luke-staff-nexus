@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Department, Role, StaffFilters } from "@/types/staff";
+import { Department, Role, StaffFilterCriteria } from "@/types/staff";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,8 +13,8 @@ import {
 import { Filter } from "lucide-react";
 
 interface StaffFiltersProps {
-  filters: StaffFilters;
-  onFilterChange: (filters: StaffFilters) => void;
+  filters: StaffFilterCriteria;
+  onFilterChange: (filters: StaffFilterCriteria) => void;
   onResetFilters: () => void;
 }
 
@@ -45,7 +45,7 @@ const StaffFilters: React.FC<StaffFiltersProps> = ({
   onFilterChange,
   onResetFilters,
 }) => {
-  const handleFilterChange = (key: keyof StaffFilters, value: string | undefined) => {
+  const handleFilterChange = (key: keyof StaffFilterCriteria, value: string | undefined) => {
     onFilterChange({
       ...filters,
       [key]: value === "" ? undefined : value,

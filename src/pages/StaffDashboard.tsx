@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Staff, StaffFilters } from "@/types/staff";
+import { Staff, StaffFilterCriteria } from "@/types/staff";
 import { getAllStaff, createStaff, updateStaff, deleteStaff } from "@/services/staffService";
 import StaffList from "@/components/staff/StaffList";
 import StaffForm, { StaffFormValues } from "@/components/staff/StaffForm";
@@ -26,7 +26,7 @@ const StaffDashboard = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedStaff, setSelectedStaff] = useState<Staff | undefined>();
   const [staffToDelete, setStaffToDelete] = useState<Staff | null>(null);
-  const [filters, setFilters] = useState<StaffFilters>({});
+  const [filters, setFilters] = useState<StaffFilterCriteria>({});
 
   useEffect(() => {
     loadStaff();
@@ -83,8 +83,19 @@ const StaffDashboard = () => {
         await updateStaff(selectedStaff.id, data);
         toast.success(`${data.firstName} ${data.lastName}'s information has been updated`);
       } else {
-        // Create new staff
-        await createStaff(data);
+        // Create new staff with all required fields from Staff type
+        await createStaff({
+          ...data,
+          role: data.role!,
+          email: data.email!,
+          status: data.status || "Active",
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          phone: data.phone!,
+          department: data.department!,
+          hireDate: data.hireDate!,
+          salary: data.salary!
+        });
         toast.success(`${data.firstName} ${data.lastName} has been added to staff`);
       }
 

@@ -32,7 +32,8 @@ export interface Staff {
   status: "Active" | "On Leave" | "Terminated";
 }
 
-export interface StaffFilters {
+// Renamed from StaffFilters to StaffFilterCriteria to avoid name conflicts
+export interface StaffFilterCriteria {
   department?: Department;
   role?: Role;
   startDate?: string;

@@ -1,5 +1,4 @@
-
-import { Staff, StaffFilters } from "@/types/staff";
+import { Staff, StaffFilterCriteria } from "@/types/staff";
 import { v4 as uuidv4 } from 'uuid';
 
 // This is a mock service that simulates API calls to a backend
@@ -126,7 +125,7 @@ const saveStaffData = (data: Staff[]) => {
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Get all staff with optional filters
-export const getAllStaff = async (filters?: StaffFilters): Promise<Staff[]> => {
+export const getAllStaff = async (filters?: StaffFilterCriteria): Promise<Staff[]> => {
   await delay(500); // Simulate network delay
   
   let staff: Staff[] = initializeStaffData();

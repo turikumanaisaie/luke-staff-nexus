@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Staff, StaffFilters } from "@/types/staff";
+import { Staff } from "@/types/staff";
 import { Edit, Trash2 } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 
