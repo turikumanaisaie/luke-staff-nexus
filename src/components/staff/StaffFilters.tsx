@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Department, Role, StaffFilterCriteria } from "@/types/staff";
 import { Button } from "@/components/ui/button";
@@ -47,7 +48,7 @@ const StaffFilters: React.FC<StaffFiltersProps> = ({
   const handleFilterChange = (key: keyof StaffFilterCriteria, value: string | undefined) => {
     onFilterChange({
       ...filters,
-      [key]: value === "" ? undefined : value,
+      [key]: value === "all" ? undefined : value,
     });
   };
 
@@ -75,14 +76,14 @@ const StaffFilters: React.FC<StaffFiltersProps> = ({
             Department
           </label>
           <Select
-            value={filters.department || ""}
+            value={filters.department || "all"}
             onValueChange={(value) => handleFilterChange("department", value)}
           >
             <SelectTrigger id="department">
               <SelectValue placeholder="All Departments" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Departments</SelectItem>
+              <SelectItem value="all">All Departments</SelectItem>
               {departments.map((dept) => (
                 <SelectItem key={dept} value={dept}>
                   {dept}
@@ -97,14 +98,14 @@ const StaffFilters: React.FC<StaffFiltersProps> = ({
             Role
           </label>
           <Select
-            value={filters.role || ""}
+            value={filters.role || "all"}
             onValueChange={(value) => handleFilterChange("role", value)}
           >
             <SelectTrigger id="role">
               <SelectValue placeholder="All Roles" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Roles</SelectItem>
+              <SelectItem value="all">All Roles</SelectItem>
               {roles.map((role) => (
                 <SelectItem key={role} value={role}>
                   {role}
